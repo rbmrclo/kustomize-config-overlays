@@ -17,9 +17,6 @@ spec:
           image: nginx:1.7.9
           ports:
             - containerPort: 80
-          env:
-            - name: FOO_BAR
-              value: "base-foobar"
           envFrom:
             - configMapRef:
                 name: nginx-deployment-config
@@ -31,3 +28,5 @@ metadata:
   name: nginx-deployment-config
   labels:
     app: nginx-deployment-config
+data:
+  FOO_BAR: "base-foobar"
