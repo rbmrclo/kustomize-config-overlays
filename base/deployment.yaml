@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+        - name: nginx-deployment
+          image: nginx:1.7.9
+          ports:
+            - containerPort: 80
+          env:
+            - name: FOO_BAR
+              value: "base-foobar"
+          envFrom:
+            - configMapRef:
+                name: nginx-deployment-config
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-deployment-config
+  labels:
+    app: nginx-deployment-config

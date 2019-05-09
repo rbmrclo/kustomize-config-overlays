@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: nginx-deployment-config
+  labels:
+    app: nginx-deployment-config
+data:
+  FOO_BAR: "staging-foobar"
